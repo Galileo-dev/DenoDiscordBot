@@ -1,6 +1,16 @@
-- name: Glitch Project Sync
-  uses: kanadgupta/glitch-sync@master
-  with:
-    project-id: "${{ secrets.projectId }}"
-    auth-token: "${{ secrets.authToken }}"
-    # path: "dist" # optional
+name: Glitch Sync
+
+on:
+  push:
+    branches:
+      - glitch-app
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync to Glitch Project
+        uses: kanadgupta/glitch-sync@master
+        with:
+          project-id: "${{ secrets.projectId }}"
+          auth-token: "${{ secrets.authToken }}"
